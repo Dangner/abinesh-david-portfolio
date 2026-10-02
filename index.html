@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Abinesh David — Cybersecurity Portfolio</title>
+<meta name="description" content="Abinesh David — Cybersecurity Professional | SOC | VAPT | Malware Analysis | Android Security | Security Research" />
+<style>
+  :root{
+    --bg:#050505;--panel:#0b0b0b;--ink:#f4f4f4;--muted:#a6a6a6;--line:#2c2c2c;
+    --accent:#e7e7e7;--accent2:#9c9c9c;--danger:#d8d8d8;--cell:#111;--shadow:0 30px 80px rgba(0,0,0,.55);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:radial-gradient(circle at 50% 20%,#1a1a1a 0,#080808 40%,#030303 100%);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit}
+  #neural{position:fixed;inset:0;width:100%;height:100%;z-index:-5;opacity:.58}
+  #honeycomb{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+  .grain{pointer-events:none;position:fixed;inset:0;z-index:20;opacity:.08;background-image:radial-gradient(rgba(255,255,255,.45) .5px,transparent .5px);background-size:4px 4px;mix-blend-mode:screen}
+  .scanline{position:fixed;left:0;right:0;top:0;height:1px;background:rgba(255,255,255,.18);box-shadow:0 0 14px rgba(255,255,255,.18);z-index:19;animation:scan 9s linear infinite;pointer-events:none}
+  @keyframes scan{0%{transform:translateY(-10px)}100%{transform:translateY(100vh)}}
+
+  header{position:fixed;top:0;left:0;right:0;z-index:15;display:flex;align-items:center;justify-content:space-between;padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(5,5,5,.9),rgba(5,5,5,.55));backdrop-filter:blur(14px)}
+  .brand{display:flex;align-items:center;gap:14px}
+  .brandMark{width:36px;height:36px;position:relative;display:grid;place-items:center;border:1px solid #666;background:#0a0a0a;clip-path:polygon(50% 0,100% 28%,84% 100%,16% 100%,0 28%);font-weight:800;letter-spacing:.08em;font-size:12px}
+  .brandText small{display:block;color:#8d8d8d;font-size:9px;letter-spacing:.28em}.brandText b{font-size:14px;letter-spacing:.24em}
+  nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+  nav a{font-size:11px;letter-spacing:.15em;text-transform:uppercase;padding:8px 11px;border:1px solid transparent;color:#a3a3a3;border-radius:2px;transition:.25s}
+  nav a:hover{color:#fff;border-color:#383838;background:#111}
+
+  main{position:relative;z-index:1}
+  .hero{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:120px 7vw 70px;position:relative}
+  .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.015),transparent 30%,transparent 70%,rgba(255,255,255,.018));pointer-events:none}
+  .eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#949494;margin-bottom:20px}
+  h1{font-size:clamp(54px,8vw,104px);line-height:.85;letter-spacing:-.06em;margin:0 0 22px;font-weight:700}
+  h1 span{display:block;color:#8f8f8f}
+  .heroTag{font-size:15px;color:#d4d4d4;max-width:620px;line-height:1.7;border-left:1px solid #696969;padding-left:16px}
+  .heroMeta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+  .chip{padding:8px 11px;border:1px solid #303030;color:#b5b5b5;font-size:10px;letter-spacing:.15em;text-transform:uppercase;background:#0b0b0b}
+  .heroActions{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+  .btn{border:1px solid #5a5a5a;background:#111;color:#fff;padding:12px 15px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:.25s}
+  .btn:hover{background:#fff;color:#000;border-color:#fff;transform:translateY(-2px)}
+
+  .immuneStage{height:min(72vh,620px);min-height:470px;position:relative;display:grid;place-items:center}
+  .core{width:190px;height:190px;position:relative;filter:drop-shadow(0 0 24px rgba(255,255,255,.09));animation:float 7s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .core:before,.core:after{content:"";position:absolute;inset:0;border:1px solid #696969;clip-path:polygon(50% 0,92% 24%,76% 100%,24% 100%,8% 24%);transform:rotate(15deg)}
+  .core:after{inset:20px;border-color:#333;transform:rotate(-15deg)}
+  .coreCenter{position:absolute;inset:38px;background:radial-gradient(circle at 35% 30%,#fff 0,#bdbdbd 8%,#313131 48%,#080808 76%);clip-path:polygon(50% 0,100% 36%,78% 100%,22% 100%,0 36%);display:grid;place-items:center;color:#0a0a0a;font-size:10px;font-weight:900;letter-spacing:.22em;text-transform:uppercase}
+  .coreLabel{position:absolute;top:calc(100% + 18px);left:50%;transform:translateX(-50%);font:11px monospace;color:#787878;white-space:nowrap;letter-spacing:.16em}
+
+  .cell{position:absolute;width:118px;height:94px;cursor:pointer;transform-style:preserve-3d;transition:transform .35s ease,filter .35s ease}
+  .cell:hover{transform:translateY(-8px) rotateX(6deg) rotateY(-6deg);filter:drop-shadow(0 18px 26px rgba(255,255,255,.12))}
+  .cell .fold{position:absolute;inset:0;background:linear-gradient(145deg,#1b1b1b,#0c0c0c 60%);border:1px solid #3b3b3b;clip-path:polygon(0 15%,30% 0,100% 16%,78% 100%,16% 84%);transform-origin:50% 50%;transition:transform .75s cubic-bezier(.2,.8,.2,1),background .3s,border-color .3s}
+  .cell .fold:before,.cell .fold:after{content:"";position:absolute;inset:0;clip-path:polygon(0 15%,30% 0,52% 55%,16% 84%);background:linear-gradient(120deg,#2d2d2d,#0d0d0d);border-right:1px solid #484848}.cell .fold:after{clip-path:polygon(100% 16%,52% 55%,78% 100%);background:linear-gradient(180deg,#161616,#070707)}
+  .cell .label{position:absolute;inset:0;display:grid;place-items:center;text-align:center;z-index:2;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#c7c7c7;pointer-events:none}
+  .cell .mini{position:absolute;bottom:7px;left:10px;font:8px monospace;color:#707070;z-index:3}
+  .cell.open .fold{transform:rotateX(52deg) rotateY(-26deg) scale(1.18);background:#151515;border-color:#ddd}
+  .cell:nth-child(2){left:2%;top:7%}.cell:nth-child(3){right:3%;top:6%}.cell:nth-child(4){left:-3%;top:42%}.cell:nth-child(5){right:-3%;top:42%}.cell:nth-child(6){left:8%;bottom:4%}.cell:nth-child(7){right:9%;bottom:2%}
+
+  section{padding:100px 7vw;border-top:1px solid rgba(255,255,255,.07);position:relative}
+  .sectionHead{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:34px}.sectionHead h2{margin:0;font-size:clamp(30px,4vw,54px);letter-spacing:-.045em}.sectionHead p{max-width:560px;color:#8f8f8f;line-height:1.7;font-size:13px}
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+  .panel{background:rgba(11,11,11,.7);border:1px solid #292929;padding:22px;min-height:160px;position:relative;overflow:hidden}.panel:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.02),transparent 45%,rgba(255,255,255,.018))}.panel h3{margin:0 0 10px;font-size:13px;letter-spacing:.1em;text-transform:uppercase}.panel p,.panel li{color:#aaa;font-size:12px;line-height:1.8}.panel ul{padding-left:16px;margin-bottom:0}
+  .span4{grid-column:span 4}.span6{grid-column:span 6}.span8{grid-column:span 8}.span12{grid-column:span 12}
+  .timeline{position:relative;padding-left:26px}.timeline:before{content:"";position:absolute;left:6px;top:0;bottom:0;width:1px;background:#2e2e2e}.event{position:relative;margin-bottom:28px}.event:before{content:"";position:absolute;left:-24px;top:7px;width:8px;height:8px;background:#fff;border-radius:50%;box-shadow:0 0 0 4px #0b0b0b,0 0 0 5px #555}.date{font:10px monospace;color:#777;letter-spacing:.12em}.event h3{margin:6px 0 5px;font-size:14px}.event p{margin:0;color:#a0a0a0;font-size:12px;line-height:1.75}
+
+  .project{min-height:240px;display:flex;flex-direction:column;justify-content:space-between}.project .code{font:10px monospace;color:#707070;letter-spacing:.12em}.project .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.tag{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#cfcfcf;border:1px solid #323232;padding:6px 7px}
+  .terminal{background:#060606;border:1px solid #2b2b2b;padding:18px;font:11px/1.8 ui-monospace,monospace;color:#d0d0d0;min-height:220px}.terminal .dim{color:#686868}.terminal .ok{color:#f0f0f0}
+  .contactGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.contactItem{padding:18px;border:1px solid #2b2b2b;background:#0b0b0b}.contactItem span{display:block;color:#707070;font:9px monospace;text-transform:uppercase;letter-spacing:.18em;margin-bottom:7px}.contactItem a{font-size:13px;color:#e9e9e9}
+
+  footer{padding:34px 7vw 50px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;color:#777;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+
+  .modal{position:fixed;inset:0;z-index:30;display:none;place-items:center;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);padding:24px}.modal.show{display:grid}.modalShell{width:min(980px,96vw);max-height:88vh;overflow:auto;background:#0a0a0a;border:1px solid #4a4a4a;box-shadow:var(--shadow);position:relative;transform-origin:center;animation:unfold .75s cubic-bezier(.19,1,.22,1)}
+  @keyframes unfold{0%{opacity:0;transform:perspective(1200px) rotateX(-70deg) rotateY(15deg) scale(.55);clip-path:polygon(0 0,20% 0,100% 0,80% 100%,0 90%)}45%{opacity:1;transform:perspective(1200px) rotateX(24deg) rotateY(-8deg) scale(.95)}100%{transform:perspective(1200px) rotateX(0) rotateY(0) scale(1);clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}}
+  .modalHeader{padding:22px 24px;border-bottom:1px solid #292929;display:flex;justify-content:space-between;gap:20px;align-items:flex-start}.modalHeader h3{margin:0;font-size:28px;letter-spacing:-.03em}.modalHeader .kicker{font:9px monospace;color:#777;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px}.close{border:1px solid #444;background:#101010;color:#ccc;width:34px;height:34px;cursor:pointer}.modalBody{padding:24px}.modalBody p,.modalBody li{font-size:13px;color:#b3b3b3;line-height:1.8}.modalBody h4{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#ededed;margin:24px 0 10px}.modalGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.metric{border:1px solid #262626;padding:14px}.metric b{font-size:15px}.metric span{display:block;color:#6f6f6f;font:9px monospace;text-transform:uppercase;letter-spacing:.13em;margin-top:5px}
+
+  .status{position:fixed;right:18px;bottom:18px;z-index:14;display:flex;align-items:center;gap:8px;padding:8px 11px;border:1px solid #2c2c2c;background:rgba(8,8,8,.83);backdrop-filter:blur(12px);font:9px monospace;color:#7b7b7b;letter-spacing:.1em;text-transform:uppercase}.pulseDot{width:6px;height:6px;border-radius:50%;background:#e6e6e6;box-shadow:0 0 10px rgba(255,255,255,.7);animation:pulse 1.8s infinite}.status b{color:#e2e2e2}@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+  @media (max-width: 980px){header{padding:14px 16px}.hero{grid-template-columns:1fr;padding:120px 20px 60px}.immuneStage{height:560px}.cell:nth-child(2){left:0}.cell:nth-child(3){right:0}.cell:nth-child(4){left:2%}.cell:nth-child(5){right:2%}.span4,.span6,.span8{grid-column:span 12}.contactGrid,.modalGrid{grid-template-columns:1fr}nav{display:none}}
+  @media (max-width: 640px){.hero{padding-top:110px}.heroMeta{gap:7px}.chip{font-size:8px}.immuneStage{transform:scale(.88);transform-origin:center}.cell{width:106px;height:86px}.sectionHead{display:block}.sectionHead p{margin-top:12px}.status{left:12px;right:auto;bottom:12px}.heroActions{width:100%}.btn{flex:1;min-width:150px}}
+
+  /* CURSOR HONEYCOMB CANVAS + ORIGAMI INTERACTION LAYER */
+  /* Honeycomb is rendered on the #honeycomb canvas; it stays behind the portfolio content. */
+
+  /* SPIRAL-ORIGAMI IRIS OPENING — inspired by the supplied folding reference */
+  .foldBloomLayer{position:fixed;inset:0;z-index:40;pointer-events:none;overflow:hidden;display:none}
+  .foldBloomLayer.active{display:block}
+  .foldBloom{position:absolute;left:0;top:0;width:172px;height:172px;transform:translate(-50%,-50%) scale(.04);transform-style:preserve-3d;opacity:0;filter:drop-shadow(0 24px 38px rgba(0,0,0,.55));perspective:1200px}
+  .foldBloomLayer.active .foldBloom{animation:bloomRoot 1.14s cubic-bezier(.16,1,.3,1) forwards}
+  @keyframes bloomRoot{0%{opacity:0;transform:translate(-50%,-50%) scale(.05) rotate(-42deg)}17%{opacity:1}42%{transform:translate(-50%,-50%) scale(.34) rotate(-20deg)}72%{transform:translate(-50%,-50%) scale(.78) rotate(5deg)}100%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0deg)}}
+  .bloomPetal{position:absolute;left:50%;top:50%;width:58px;height:132px;margin-left:-29px;margin-top:-16px;transform-origin:50% 94%;background:linear-gradient(155deg,#3e3e3e 0%,#161616 48%,#050505 100%);border:1px solid rgba(255,255,255,.34);clip-path:polygon(50% 0%,93% 17%,89% 45%,73% 72%,60% 92%,52% 100%,42% 100%,27% 92%,11% 72%,2% 45%,7% 17%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);transform:rotate(var(--a)) translateY(-4px) scale(.08) rotateX(88deg);transform-style:preserve-3d;backface-visibility:hidden;opacity:.2}
+  .foldBloomLayer.active .bloomPetal{animation:petalOpen .98s var(--delay) cubic-bezier(.16,1,.3,1) forwards}
+  @keyframes petalOpen{0%{transform:rotate(var(--a)) translateY(-4px) scale(.08) rotateX(88deg);opacity:.14}22%{opacity:1}46%{transform:rotate(calc(var(--a) - 8deg)) translateY(-35px) scale(.54) rotateX(49deg)}72%{transform:rotate(calc(var(--a) + 3deg)) translateY(-66px) scale(.88) rotateX(18deg)}100%{transform:rotate(var(--a)) translateY(-82px) scale(1) rotateX(2deg);opacity:1}}
+  .bloomPetal:nth-child(odd){background:linear-gradient(145deg,#4a4a4a 0%,#181818 48%,#050505 100%)}
+  .bloomPetal:nth-child(even){background:linear-gradient(190deg,#242424 0%,#090909 70%,#000 100%)}
+  .bloomHub{position:absolute;left:50%;top:50%;width:39px;height:39px;transform:translate(-50%,-50%) scale(.2) rotate(45deg);background:radial-gradient(circle at 35% 30%,#fff 0 5%,#999 12%,#222 45%,#020202 78%);border:1px solid rgba(255,255,255,.68);z-index:3;box-shadow:0 0 0 rgba(255,255,255,0);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+  .foldBloomLayer.active .bloomHub{animation:hubOpen .96s .12s cubic-bezier(.16,1,.3,1) forwards}
+  @keyframes hubOpen{0%{transform:translate(-50%,-50%) scale(.2) rotate(45deg);box-shadow:0 0 0 rgba(255,255,255,0)}55%{transform:translate(-50%,-50%) scale(1.1) rotate(45deg);box-shadow:0 0 44px rgba(255,255,255,.24)}100%{transform:translate(-50%,-50%) scale(.98) rotate(45deg);box-shadow:0 0 18px rgba(255,255,255,.12)}}
+  .bloomIris{position:absolute;left:50%;top:50%;width:82px;height:82px;transform:translate(-50%,-50%) scale(.06);border:1px solid rgba(255,255,255,.22);border-radius:50%;z-index:2;box-shadow:0 0 0 rgba(255,255,255,0)}
+  .foldBloomLayer.active .bloomIris{animation:irisScale 1s .04s ease-out forwards}
+  @keyframes irisScale{0%{transform:translate(-50%,-50%) scale(.06);opacity:0}50%{transform:translate(-50%,-50%) scale(.64);opacity:.36}100%{transform:translate(-50%,-50%) scale(1);opacity:.18;box-shadow:0 0 26px rgba(255,255,255,.08)}}
+  .bloomLabel{position:absolute;left:50%;top:calc(50% + 100px);transform:translateX(-50%);font:10px ui-monospace,monospace;letter-spacing:.26em;text-transform:uppercase;color:#d2d2d2;opacity:0;white-space:nowrap;text-shadow:0 0 12px rgba(255,255,255,.15)}
+  .foldBloomLayer.active .bloomLabel{animation:labelIn .5s .68s ease forwards}
+  @keyframes labelIn{from{opacity:0;transform:translate(-50%,8px)}to{opacity:.8;transform:translate(-50%,0)}}
+  .cell.unfolding .fold{animation:cellUnfold 1.05s cubic-bezier(.16,1,.3,1) forwards}
+  @keyframes cellUnfold{0%{transform:rotateZ(0) rotateX(0) scale(1)}34%{transform:rotateZ(-5deg) rotateX(36deg) scale(1.14)}68%{transform:rotateZ(6deg) rotateX(68deg) scale(.82)}100%{transform:rotateZ(0) rotateX(84deg) scale(.58);opacity:.45}}
+  .modalShell.irisReady{animation:modalIrisIn .76s cubic-bezier(.16,1,.3,1) both}
+  @keyframes modalIrisIn{0%{opacity:0;transform:perspective(1400px) rotateX(-58deg) rotateZ(-6deg) scale(.72);clip-path:polygon(50% 0,62% 16%,78% 8%,90% 24%,100% 50%,82% 64%,92% 84%,68% 100%,50% 78%,32% 100%,8% 84%,18% 64%,0 50%,10% 24%,22% 8%,38% 16%)}50%{opacity:1;transform:perspective(1400px) rotateX(10deg) rotateZ(1deg) scale(.98);clip-path:polygon(50% 0,86% 8%,100% 36%,92% 74%,65% 100%,34% 92%,0 68%,8% 26%)}100%{opacity:1;transform:perspective(1400px) rotateX(0) rotateZ(0) scale(1);clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+
+</style>
+</head>
+<body>
+<canvas id="honeycomb" aria-hidden="true"></canvas>
+<div id="foldBloomLayer" class="foldBloomLayer" aria-hidden="true"></div>
+<div id="honeyToast" class="honeyToast"><span class="dot"></span><span id="honeyToastText">NEURAL CELL DETECTED · MOVE / TOUCH TO UNFOLD</span></div>
+
+<canvas id="neural"></canvas>
+<div class="grain"></div><div class="scanline"></div>
+<header>
+  <a class="brand" href="#home"><div class="brandMark">AD</div><div class="brandText"><small>CYBERSECURITY</small><b>ABINESH DAVID</b></div></a>
+  <nav>
+    <a href="#about">About</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#research">Research</a><a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div>
+    <div class="eyebrow">CYBERSECURITY / SECURITY RESEARCH / ADAPTIVE DEFENSE</div>
+    <h1>ABINESH <span>DAVID</span></h1>
+    <div class="heroTag">Cybersecurity Professional focused on SOC Operations, VAPT, Malware Analysis, Android Security, Network Security, and Security Research.</div>
+    <div class="heroMeta"><div class="chip">SOC ANALYST</div><div class="chip">VAPT</div><div class="chip">MALWARE ANALYSIS</div><div class="chip">ANDROID SECURITY</div></div>
+    <div class="heroActions"><a class="btn" href="#projects">Open Security Map</a><button class="btn" data-open="about">Enter Profile</button></div>
+  </div>
+
+  <div class="immuneStage" aria-label="Interactive origami immune system map">
+    <div class="core"><div class="coreCenter">ARMADA</div><div class="coreLabel">ADAPTIVE SECURITY CORE</div></div>
+    <div class="cell" data-open="about"><div class="fold"></div><div class="label">ABOUT</div><div class="mini">CELL-01</div></div>
+    <div class="cell" data-open="experience"><div class="fold"></div><div class="label">EXPERIENCE</div><div class="mini">CELL-02</div></div>
+    <div class="cell" data-open="skills"><div class="fold"></div><div class="label">SKILLS</div><div class="mini">CELL-03</div></div>
+    <div class="cell" data-open="projects"><div class="fold"></div><div class="label">PROJECTS</div><div class="mini">CELL-04</div></div>
+    <div class="cell" data-open="research"><div class="fold"></div><div class="label">RESEARCH</div><div class="mini">CELL-05</div></div>
+    <div class="cell" data-open="contact"><div class="fold"></div><div class="label">CONTACT</div><div class="mini">CELL-06</div></div>
+  </div>
+</section>
+
+<section id="about"><div class="sectionHead"><h2>ABOUT / IDENTITY</h2><p>A black-and-white cybersecurity interface built as an origami immune system: every fold is a module, every module opens into evidence, work, or research.</p></div>
+  <div class="grid">
+    <div class="panel span8"><h3>Profile</h3><p>I am a Computer Science and Engineering student and cybersecurity professional with practical experience across SOC monitoring, VAPT, mobile application security, malware analysis, network traffic analysis, and security research. I work best where offensive thinking and defensive analysis meet.</p></div>
+    <div class="panel span4"><h3>Location</h3><p>Coimbatore, Tamil Nadu, India</p><p class="dim">Available for entry-level cybersecurity roles and security research opportunities.</p></div>
+    <div class="panel span4"><h3>Core Identity</h3><p>SOC Analyst L1 / VAPT Engineer / Cybersecurity Analyst / Malware Analysis / Android Security</p></div>
+    <div class="panel span4"><h3>Education</h3><p>Hindusthan College of Engineering and Technology<br>B.E. Computer Science & Engineering<br>CGPA: 8.7 / 10.0</p></div>
+    <div class="panel span4"><h3>Approach</h3><p>Understand the attack → identify the weakness → analyze evidence → detect the threat → strengthen the defense.</p></div>
+  </div>
+</section>
+
+<section id="experience"><div class="sectionHead"><h2>EXPERIENCE</h2><p>Professional exposure across SOC, mobile security, cybersecurity project work, and IoT security.</p></div>
+  <div class="panel span12"><div class="timeline">
+    <div class="event"><div class="date">SEP 2025 — MAR 2026</div><h3>Cybersecurity Intern — ElevanceSkills</h3><p>Practical cybersecurity and real-time project exposure including security testing, Android security, research, problem solving, teamwork, communication, adaptability and initiative.</p></div>
+    <div class="event"><div class="date">SEP 2025 — MAR 2026</div><h3>Mobile Security Analyst Intern — NullClass</h3><p>Performed SAST and DAST on Android applications, investigated runtime behavior, and inspected network traffic in controlled environments.</p></div>
+    <div class="event"><div class="date">JUL 2025 — SEP 2025</div><h3>SOC Analyst L1 Intern — NullClass</h3><p>Triaged security alerts, investigated suspicious behavior, used Wireshark for packet analysis and Nmap for network scanning, and studied security monitoring workflows.</p></div>
+    <div class="event"><div class="date">JAN 2025</div><h3>IoT Security Intern — Emglitz Technologies</h3><p>Explored IoT device security, data integrity, and secure edge-to-gateway communication.</p></div>
+  </div></div>
+</section>
+
+<section id="skills"><div class="sectionHead"><h2>SKILL MATRIX</h2><p>Security capabilities arranged like an immune response: observe, investigate, validate, and adapt.</p></div>
+  <div class="grid">
+    <div class="panel span4"><h3>SOC / Blue Team</h3><ul><li>Alert triage</li><li>Log analysis</li><li>Threat detection</li><li>Incident response</li><li>Network monitoring</li></ul></div>
+    <div class="panel span4"><h3>VAPT / Offensive</h3><ul><li>Reconnaissance</li><li>Network scanning</li><li>Vulnerability assessment</li><li>Web security</li><li>OWASP Top 10</li></ul></div>
+    <div class="panel span4"><h3>Malware / Mobile</h3><ul><li>Static analysis</li><li>Dynamic analysis</li><li>Sandboxing</li><li>Android security</li><li>Behavioral analysis</li></ul></div>
+    <div class="panel span6"><h3>Tools</h3><p>Wireshark · Burp Suite · Nmap · Metasploit · Procmon · Regshot · FakeNet-NG · Nessus · Nikto · MobSF · JADX · Frida · ADB · Wazuh · Security Onion · YARA · Sigma · VirusTotal</p></div>
+    <div class="panel span6"><h3>Programming / Platforms</h3><p>Python · Java · C · C# · Dart · SQL · Bash · Kali Linux · Ubuntu/Debian · Windows · Android · Flutter · FastAPI · SQLite · Git · GitHub</p></div>
+  </div>
+</section>
+
+<section id="projects"><div class="sectionHead"><h2>PROJECT CELLS</h2><p>Each project is a living security module. Click any origami cell above to open a detailed view.</p></div>
+  <div class="grid">
+    <div class="panel project span6"><div><div class="code">PROJECT / 01</div><h3>ARMADA — Adversarially Robust Adaptive Malware Detection</h3><p>Research architecture for adversarial robustness, concept drift, adaptive learning, and graph-based malware classification.</p><div class="tags"><span class="tag">GNN</span><span class="tag">Concept Drift</span><span class="tag">Adversarial ML</span><span class="tag">Malware</span></div></div><button class="btn" data-open="projects">Unfold Project</button></div>
+    <div class="panel project span6"><div><div class="code">PROJECT / 02</div><h3>Advanced Malware Analysis Sandbox</h3><p>Virtualized analysis lab using process, registry, file-system and network telemetry with Python-assisted behavioral logging.</p><div class="tags"><span class="tag">Procmon</span><span class="tag">Regshot</span><span class="tag">Wireshark</span><span class="tag">FakeNet-NG</span></div></div><button class="btn" data-open="projects">Open Lab</button></div>
+    <div class="panel project span4"><div><div class="code">PROJECT / 03</div><h3>Malicious Android App Analysis</h3><p>SAST and DAST of Android applications, permissions, APIs, runtime behavior and network communication.</p></div><button class="btn" data-open="projects">Inspect</button></div>
+    <div class="panel project span4"><div><div class="code">PROJECT / 04</div><h3>Android Malware PoC</h3><p>Educational Android security research project for controlled malware-analysis learning.</p></div><button class="btn" data-open="projects">Inspect</button></div>
+    <div class="panel project span4"><div><div class="code">PROJECT / 05</div><h3>Mobile Security & Threat Intelligence Platform</h3><p>Flutter + FastAPI + SQLite security workflow with threat-intelligence integration.</p></div><button class="btn" data-open="projects">Inspect</button></div>
+  </div>
+</section>
+
+<section id="research"><div class="sectionHead"><h2>RESEARCH CORE</h2><p>The visual language here mirrors a biological immune system: detect foreign behavior, adapt, learn from drift, and reinforce future response.</p></div>
+  <div class="grid">
+    <div class="panel span8"><h3>ARMADA Pipeline</h3><div class="terminal"><div class="dim">[01] ingest → malware samples</div><div class="dim">[02] extract → static features + CFG</div><div>[03] encode → graph representation</div><div>[04] classify → GNN malware classifier</div><div>[05] harden → adversarial training</div><div>[06] observe → concept drift detection</div><div>[07] adapt → model update</div><div class="ok">[08] output → malware / benign decision</div></div></div>
+    <div class="panel span4"><h3>Research Interests</h3><ul><li>Adversarial Machine Learning</li><li>Concept Drift</li><li>Adaptive Malware Detection</li><li>Graph-Based Malware Analysis</li><li>Cross-Platform Security</li><li>Android Malware</li></ul></div>
+    <div class="panel span12"><h3>Security Lab Philosophy</h3><p>All offensive experiments are intended for authorized, isolated environments such as virtual machines and Android emulators. The goal is to learn how attacks behave and translate those observations into safer detection and mitigation strategies.</p></div>
+  </div>
+</section>
+
+<section id="contact"><div class="sectionHead"><h2>CONTACT</h2><p>Open a communication fold for internships, entry-level cybersecurity roles, project collaboration, and security research.</p></div>
+  <div class="contactGrid">
+    <div class="contactItem"><span>Email</span><a href="mailto:abineshd0501@gmail.com">abineshd0501@gmail.com</a></div>
+    <div class="contactItem"><span>Phone</span><a href="tel:+916381633445">+91 6381633445</a></div>
+    <div class="contactItem"><span>LinkedIn</span><a href="https://www.linkedin.com/in/abinesh-david-625a64365" target="_blank" rel="noreferrer">linkedin.com/in/abinesh-david-625a64365</a></div>
+    <div class="contactItem"><span>GitHub</span><a href="https://github.com/Dangner" target="_blank" rel="noreferrer">github.com/Dangner</a></div>
+  </div>
+</section>
+</main>
+
+<footer><div>ABINESH DAVID / CYBERSECURITY</div><div>UNDERSTAND THE ATTACK. DETECT THE THREAT. STRENGTHEN THE DEFENSE.</div></footer>
+<div class="status"><span class="pulseDot"></span><b>IMMUNE CORE ACTIVE</b><span id="clock">00:00:00</span></div>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modalShell" id="modalShell">
+    <div class="modalHeader"><div><div class="kicker" id="modalKicker">CELL / 00</div><h3 id="modalTitle">Module</h3></div><button class="close" id="closeModal" aria-label="Close">×</button></div>
+    <div class="modalBody" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+  // Neural-immune background from the uploaded concept, restyled for this portfolio.
+  const bg=document.getElementById('neural'), bctx=bg.getContext('2d');
+  let bw=0,bh=0,pts=[],links=[],threats=[],tick=0;
+  function resize(){bw=bg.width=innerWidth*devicePixelRatio; bh=bg.height=innerHeight*devicePixelRatio; bg.style.width=innerWidth+'px'; bg.style.height=innerHeight+'px';}
+  addEventListener('resize',resize);resize();
+  for(let i=0;i<52;i++) pts.push({x:Math.random(),y:Math.random(),vx:(Math.random()-.5)*.0008,vy:(Math.random()-.5)*.0008,r:Math.random()*1.4+.5,p:Math.random()*6.28});
+  function spawnThreat(){let side=Math.floor(Math.random()*4),x=side<2?(side?1.02:-.02):Math.random(),y=side>=2?(side===3?-0.02:1.02):Math.random();threats.push({x,y,tx:.5+(Math.random()-.5)*.14,ty:.48+(Math.random()-.5)*.16,s:.0009+Math.random()*.001});}
+  function drawBg(){
+    bctx.clearRect(0,0,bw,bh); bctx.fillStyle='#050505'; bctx.fillRect(0,0,bw,bh);
+    if(tick%120===0)spawnThreat();
+    links=[];
+    for(let i=0;i<pts.length;i++){
+      const p=pts[i];p.x+=p.vx;p.y+=p.vy;p.p+=.02;if(p.x<0||p.x>1)p.vx*=-1;if(p.y<0||p.y>1)p.vy*=-1;
+      for(let j=i+1;j<pts.length;j++){const q=pts[j],dx=(p.x-q.x)*innerWidth,dy=(p.y-q.y)*innerHeight,d=Math.hypot(dx,dy);if(d<145)links.push([p,q,d]);}
+    }
+    for(const [p,q,d] of links){bctx.strokeStyle=`rgba(215,215,215,${Math.max(0,.10-d/1450)})`;bctx.lineWidth=devicePixelRatio*.7;bctx.beginPath();bctx.moveTo(p.x*bw,p.y*bh);bctx.lineTo(q.x*bw,q.y*bh);bctx.stroke();}
+    for(const p of pts){bctx.fillStyle=`rgba(255,255,255,${.28+.18*Math.sin(p.p)})`;bctx.beginPath();bctx.arc(p.x*bw,p.y*bh,p.r*devicePixelRatio,0,Math.PI*2);bctx.fill();}
+    for(let i=threats.length-1;i>=0;i--){let th=threats[i],dx=th.tx-th.x,dy=th.ty-th.y,d=Math.hypot(dx,dy);if(d>.01){th.x+=dx/d*th.s;th.y+=dy/d*th.s}else threats.splice(i,1);bctx.strokeStyle='rgba(255,255,255,.20)';bctx.lineWidth=devicePixelRatio; bctx.beginPath();bctx.moveTo(th.x*bw,th.y*bh);bctx.lineTo((th.x-dx*.04)*bw,(th.y-dy*.04)*bh);bctx.stroke();bctx.fillStyle='rgba(255,255,255,.8)';bctx.beginPath();bctx.arc(th.x*bw,th.y*bh,2.2*devicePixelRatio,0,Math.PI*2);bctx.fill();}
+    // Immune rings
+    const cx=bw*.5,cy=bh*.48;for(const rr of [.18,.26,.35]){bctx.strokeStyle='rgba(255,255,255,.055)';bctx.setLineDash([5*devicePixelRatio,8*devicePixelRatio]);bctx.beginPath();bctx.arc(cx,cy,Math.min(bw,bh)*rr,0,Math.PI*2);bctx.stroke();}bctx.setLineDash([]);
+    tick++;requestAnimationFrame(drawBg);
+  }drawBg();
+
+  const data={
+    about:{title:'About / Identity',kicker:'CELL / 01',body:`<div class="modalGrid"><div class="metric"><b>CYBERSECURITY</b><span>Core Identity</span></div><div class="metric"><b>8.7 / 10</b><span>Current CGPA</span></div><div class="metric"><b>SOC + VAPT</b><span>Primary Focus</span></div><div class="metric"><b>ANDROID</b><span>Mobile Security</span></div></div><h4>Profile</h4><p>Computer Science and Engineering student and cybersecurity professional focused on SOC monitoring, vulnerability assessment and penetration testing, malware analysis, Android security, network traffic analysis, and security research.</p><h4>Method</h4><p>Understand the attack → identify the weakness → analyze evidence → detect the threat → strengthen the defense.</p>`},
+    experience:{title:'Experience',kicker:'CELL / 02',body:`<h4>ElevanceSkills — Cybersecurity Intern</h4><p><b>September 17, 2025 – March 17, 2026.</b> Practical cybersecurity and real-time project exposure with emphasis on problem solving, analytical thinking, teamwork, communication, adaptability, and initiative.</p><h4>NullClass — Mobile Security Analyst Intern</h4><p><b>September 2025 – March 2026.</b> SAST and DAST on Android applications, runtime behavior inspection, and controlled network traffic analysis.</p><h4>NullClass — SOC Analyst L1 Intern</h4><p><b>July 2025 – September 2025.</b> Security-alert triage, suspicious-activity investigation, Wireshark packet analysis, and Nmap scanning.</p><h4>Emglitz Technologies — IoT Security Intern</h4><p><b>January 2025.</b> IoT security, data integrity, and secure device-to-gateway communication concepts.</p>`},
+    skills:{title:'Skill Matrix',kicker:'CELL / 03',body:`<div class="modalGrid"><div class="metric"><b>Wireshark</b><span>Traffic Analysis</span></div><div class="metric"><b>Burp Suite</b><span>Web Security</span></div><div class="metric"><b>Nmap</b><span>Network Scanning</span></div><div class="metric"><b>Metasploit</b><span>Validation</span></div><div class="metric"><b>MobSF</b><span>Android Analysis</span></div><div class="metric"><b>Procmon</b><span>Behavioral Analysis</span></div></div><h4>Technical Areas</h4><p>SOC monitoring · VAPT · Mobile/Web Security · Malware Analysis · Incident Response · Log Analysis · TCP/IP · OSI · DNS · HTTP/HTTPS · VPN · Subnetting · Routing/Switching.</p><h4>Programming</h4><p>Python · Java · C · C# · Dart · SQL · Bash.</p>`},
+    projects:{title:'Project Cells',kicker:'CELL / 04',body:`<h4>ARMADA</h4><p><b>Adversarially Robust Adaptive Malware Detection Architecture.</b> A research-oriented framework exploring adversarial robustness, concept drift, adaptive learning, graph representations, and malware classification.</p><h4>Advanced Malware Analysis Sandbox</h4><p>Virtualized environment using VirtualBox, Procmon, Regshot, Wireshark and FakeNet-NG, with Python-assisted execution and behavioral logging.</p><h4>Malicious Mobile Application Analysis</h4><p>Static and dynamic Android application security analysis, including permissions, APIs, runtime behavior, and network communication.</p><h4>Android Malware PoC</h4><p>Educational Android security research project used for controlled malware-analysis learning.</p><h4>Mobile Security & Threat Intelligence Platform</h4><p>Flutter + FastAPI + SQLite concept with APK/URL analysis and threat-intelligence enrichment.</p>`},
+    research:{title:'Research Core',kicker:'CELL / 05',body:`<div class="terminal"><div class="dim">[01] INGEST / MALWARE SAMPLES</div><div class="dim">[02] EXTRACT / STATIC + CFG</div><div>[03] ENCODE / GRAPH REPRESENTATION</div><div>[04] CLASSIFY / GNN</div><div>[05] HARDEN / ADVERSARIAL TRAINING</div><div>[06] OBSERVE / CONCEPT DRIFT</div><div>[07] ADAPT / MODEL UPDATE</div><div class="ok">[08] OUTPUT / MALWARE CLASSIFICATION</div></div><h4>Research Interests</h4><p>Adversarial Machine Learning · Concept Drift · Adaptive Malware Detection · Graph-Based Malware Analysis · Android Malware · Cross-Platform Security.</p>`},
+    contact:{title:'Contact',kicker:'CELL / 06',body:`<h4>Reach Out</h4><p><b>Email:</b> <a href="mailto:abineshd0501@gmail.com">abineshd0501@gmail.com</a></p><p><b>Phone:</b> <a href="tel:+916381633445">+91 6381633445</a></p><p><b>LinkedIn:</b> <a href="https://www.linkedin.com/in/abinesh-david-625a64365" target="_blank">linkedin.com/in/abinesh-david-625a64365</a></p><p><b>GitHub:</b> <a href="https://github.com/Dangner" target="_blank">github.com/Dangner</a></p>`}
+  };
+  const modal=document.getElementById('modal'), modalShell=document.getElementById('modalShell'), title=document.getElementById('modalTitle'), kicker=document.getElementById('modalKicker'), body=document.getElementById('modalBody');
+  function showModal(key){const d=data[key]; if(!d)return; title.textContent=d.title;kicker.textContent=d.kicker;body.innerHTML=d.body;modal.classList.add('show');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';modalShell.classList.remove('irisReady');void modalShell.offsetWidth;modalShell.classList.add('irisReady');}
+  function closeModal(){modal.classList.remove('show');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';modalShell.classList.remove('irisReady');document.querySelectorAll('.cell.open,.cell.unfolding').forEach(x=>x.classList.remove('open','unfolding'));}
+
+  const foldBloomLayer=document.getElementById('foldBloomLayer');
+  function launchOrigamiOpen(key, source){
+    if(!data[key])return;
+    const rect=source?.getBoundingClientRect?.();
+    const x=rect?rect.left+rect.width/2:innerWidth/2;
+    const y=rect?rect.top+rect.height/2:innerHeight/2;
+    foldBloomLayer.innerHTML='';
+    const bloom=document.createElement('div'); bloom.className='foldBloom'; bloom.style.left=x+'px'; bloom.style.top=y+'px';
+    const iris=document.createElement('div'); iris.className='bloomIris'; bloom.appendChild(iris);
+    const petals=10;
+    for(let i=0;i<petals;i++){
+      const petal=document.createElement('div'); petal.className='bloomPetal';
+      petal.style.setProperty('--a',(i*(360/petals)-8)+'deg');
+      petal.style.setProperty('--delay',(i*0.075)+'s');
+      bloom.appendChild(petal);
+    }
+    const hub=document.createElement('div'); hub.className='bloomHub'; bloom.appendChild(hub);
+    const label=document.createElement('div'); label.className='bloomLabel'; label.textContent=(key+' · UNFOLDING').toUpperCase(); bloom.appendChild(label);
+    foldBloomLayer.appendChild(bloom); foldBloomLayer.classList.add('active');
+    if(source?.classList?.contains('cell')) source.classList.add('unfolding','open');
+    setTimeout(()=>showModal(key),920);
+    setTimeout(()=>{foldBloomLayer.classList.remove('active');foldBloomLayer.innerHTML='';},1420);
+  }
+
+  document.querySelectorAll('[data-open]').forEach(el=>el.addEventListener('click',e=>{
+    const k=el.dataset.open;
+    launchOrigamiOpen(k,el);
+  }));
+  document.getElementById('closeModal').addEventListener('click',closeModal);
+  modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+  const clock=document.getElementById('clock');setInterval(()=>{const d=new Date();clock.textContent=d.toLocaleTimeString([], {hour12:false});},1000);
+
+  /* Cursor honeycomb: dark 3D hex cells with crisp white activated seams, inspired by the reference. */
+  const hc=document.getElementById('honeycomb');
+  const hctx=hc.getContext('2d');
+  let hw=0,hh=0,mx=-9999,my=-9999,mxT=-9999,myT=-9999;
+
+  function hresize(){
+    const dpr=Math.min(window.devicePixelRatio||1,2);
+    hw=hc.width=Math.floor(innerWidth*dpr);
+    hh=hc.height=Math.floor(innerHeight*dpr);
+    hc.style.width=innerWidth+'px';
+    hc.style.height=innerHeight+'px';
+    hctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  addEventListener('resize',hresize);
+  hresize();
+
+  addEventListener('mousemove',e=>{
+    mxT=e.clientX;
+    myT=e.clientY;
+  },{passive:true});
+
+  addEventListener('touchmove',e=>{
+    const tt=e.touches[0];
+    if(tt){mxT=tt.clientX;myT=tt.clientY;}
+  },{passive:true});
+
+  addEventListener('touchstart',e=>{
+    const tt=e.touches[0];
+    if(tt){mxT=tt.clientX;myT=tt.clientY;}
+  },{passive:true});
+
+  function hexPath(cx,cy,r){
+    hctx.beginPath();
+    for(let i=0;i<6;i++){
+      const a=Math.PI/180*(60*i-30);
+      const x=cx+r*Math.cos(a), y=cy+r*Math.sin(a);
+      i ? hctx.lineTo(x,y) : hctx.moveTo(x,y);
+    }
+    hctx.closePath();
+  }
+
+  function drawHC(){
+    mx+=(mxT-mx)*.18;
+    my+=(myT-my)*.18;
+
+    const dpr=Math.min(window.devicePixelRatio||1,2);
+    hctx.clearRect(0,0,innerWidth,innerHeight);
+
+    // Compact, architectural cells: only a few are activated around the cursor.
+    // The visual language follows the reference: near-black faces, bevel-like edges,
+    // and a clean white glow instead of the previous red/orange lighting.
+    const r=18;
+    const w=r*Math.sqrt(3);
+    const vstep=r*1.5;
+    const reach=54;
+
+    const row0=Math.floor((my-reach)/vstep), row1=Math.floor((my+reach)/vstep);
+    for(let row=row0;row<=row1;row++){
+      const y=row*vstep;
+      const xOff=(((row%2)+2)%2)*(w/2);
+      const col0=Math.floor((mx-reach-xOff)/w), col1=Math.floor((mx+reach-xOff)/w);
+
+      for(let col=col0;col<=col1;col++){
+        const x=xOff+col*w;
+        const d=Math.hypot(x-mx,y-my);
+        if(d<reach){
+          const t=1-d/reach;
+          const glow=t*t;
+          const rr=r*.92;
+
+          // Soft contact glow behind the cell.
+          hctx.save();
+          hctx.shadowBlur=18*glow;
+          hctx.shadowColor=`rgba(255,255,255,${.30*glow})`;
+          hexPath(x,y,rr);
+          hctx.fillStyle=`rgba(7,7,7,${.72+.20*glow})`;
+          hctx.fill();
+          hctx.restore();
+
+          // Dark inner face, giving the cell a subtle 3D panel appearance.
+          hexPath(x,y,rr*.86);
+          const face=hctx.createRadialGradient(x-r*.18,y-r*.22,1,x,y,r);
+          face.addColorStop(0,`rgba(48,48,48,${.22*glow})`);
+          face.addColorStop(.62,`rgba(10,10,10,${.42+.20*glow})`);
+          face.addColorStop(1,`rgba(0,0,0,${.58+.18*glow})`);
+          hctx.fillStyle=face;
+          hctx.fill();
+
+          // White architectural seam.
+          hexPath(x,y,rr);
+          hctx.strokeStyle=`rgba(255,255,255,${.10+glow*.90})`;
+          hctx.lineWidth=.65+glow*1.35;
+          hctx.stroke();
+
+          // One brighter edge catches the light like the reference's beveled rim.
+          hctx.beginPath();
+          for(let i=0;i<3;i++){
+            const a=Math.PI/180*(60*i-30);
+            const x1=x+rr*Math.cos(a), y1=y+rr*Math.sin(a);
+            const j=(i+1)%6;
+            const a2=Math.PI/180*(60*j-30);
+            const x2=x+rr*Math.cos(a2), y2=y+rr*Math.sin(a2);
+            if(i===0) hctx.moveTo(x1,y1);
+            hctx.lineTo(x2,y2);
+          }
+          hctx.strokeStyle=`rgba(255,255,255,${.12+glow*.68})`;
+          hctx.lineWidth=.7+glow*1.0;
+          hctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(drawHC);
+  }
+  drawHC();
+
+  // Make the existing portfolio cells feel like folded biological/origami units.
+  document.querySelectorAll('.cell').forEach((cell)=>{
+    cell.addEventListener('pointerenter',()=>{
+      cell.querySelector('.fold')?.style.setProperty('box-shadow','0 0 34px rgba(255,255,255,.12)');
+      showToast((cell.dataset.open||'CELL').toUpperCase()+' · FOLD DETECTED');
+    });
+    cell.addEventListener('pointerleave',()=>cell.querySelector('.fold')?.style.removeProperty('box-shadow'));
+  });
+
+</script>
+</body>
+</html>
